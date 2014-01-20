@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A8E96BE4284C40419AA8E4CF /* CircleFftApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3AEE544D70E44D32BB86EA42 /* CircleFftApp.cpp */; };
+		D04E6FD2188DE7D400036549 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FB8188DE7D300036549 /* .gitignore */; };
+		D04E6FD3188DE7D400036549 /* README in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FBB188DE7D300036549 /* README */; };
+		D04E6FD4188DE7D400036549 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FBF188DE7D300036549 /* kiss_fft.c */; };
+		D04E6FD5188DE7D400036549 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FC1188DE7D300036549 /* kiss_fftr.c */; };
+		D04E6FD6188DE7D400036549 /* KissFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FC3188DE7D300036549 /* KissFFT.cpp */; };
+		D04E6FD7188DE7D400036549 /* onsetsds.c in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FC9188DE7D400036549 /* onsetsds.c */; };
+		D04E6FD8188DE7D400036549 /* onsetsdshelpers.c in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FCB188DE7D400036549 /* onsetsdshelpers.c */; };
+		D04E6FD9188DE7D400036549 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FCD188DE7D400036549 /* LICENSE */; };
+		D04E6FDA188DE7D400036549 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FCE188DE7D400036549 /* README.md */; };
+		D04E6FDB188DE7D400036549 /* BeatFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D04E6FD0188DE7D400036549 /* BeatFactory.cpp */; };
+		D04E6FDE188DE7F100036549 /* track1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FDC188DE7F100036549 /* track1.mp3 */; };
+		D04E6FDF188DE7F100036549 /* track2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D04E6FDD188DE7F100036549 /* track2.mp3 */; };
+		D6FB0E76492E47D48D3E807B /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4095F41738E845C0A471A34E /* CinderApp.icns */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3AEE544D70E44D32BB86EA42 /* CircleFftApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CircleFftApp.cpp; path = ../src/CircleFftApp.cpp; sourceTree = "<group>"; };
+		4095F41738E845C0A471A34E /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		4A2140091DDE4F698F0021FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
+		8D1107320486CEB800E47090 /* CircleFft.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CircleFft.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		941DA380079D44ACB6C0F4F7 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		A28ABE5255074E81B71119C9 /* CircleFft_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = CircleFft_Prefix.pch; sourceTree = "<group>"; };
+		D04E6FB8188DE7D300036549 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		D04E6FBB188DE7D300036549 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		D04E6FBE188DE7D300036549 /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _kiss_fft_guts.h; sourceTree = "<group>"; };
+		D04E6FBF188DE7D300036549 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fft.c; sourceTree = "<group>"; };
+		D04E6FC0188DE7D300036549 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
+		D04E6FC1188DE7D300036549 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fftr.c; sourceTree = "<group>"; };
+		D04E6FC2188DE7D300036549 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fftr.h; sourceTree = "<group>"; };
+		D04E6FC3188DE7D300036549 /* KissFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KissFFT.cpp; sourceTree = "<group>"; };
+		D04E6FC4188DE7D300036549 /* KissFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KissFFT.h; sourceTree = "<group>"; };
+		D04E6FC7188DE7D400036549 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
+		D04E6FC9188DE7D400036549 /* onsetsds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onsetsds.c; sourceTree = "<group>"; };
+		D04E6FCA188DE7D400036549 /* onsetsds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsds.h; sourceTree = "<group>"; };
+		D04E6FCB188DE7D400036549 /* onsetsdshelpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onsetsdshelpers.c; sourceTree = "<group>"; };
+		D04E6FCC188DE7D400036549 /* onsetsdshelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsdshelpers.h; sourceTree = "<group>"; };
+		D04E6FCD188DE7D400036549 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D04E6FCE188DE7D400036549 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		D04E6FD0188DE7D400036549 /* BeatFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BeatFactory.cpp; sourceTree = "<group>"; };
+		D04E6FD1188DE7D400036549 /* BeatFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeatFactory.h; sourceTree = "<group>"; };
+		D04E6FDC188DE7F100036549 /* track1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track1.mp3; path = ../resources/track1.mp3; sourceTree = "<group>"; };
+		D04E6FDD188DE7F100036549 /* track2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = track2.mp3; path = ../resources/track2.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FB7188DE7D300036549 /* BeatFactory */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3AEE544D70E44D32BB86EA42 /* CircleFftApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B50EAFCA7E003A9687 /* QTKit.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* CircleFft.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CircleFft */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CircleFft;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				941DA380079D44ACB6C0F4F7 /* Resources.h */,
+				A28ABE5255074E81B71119C9 /* CircleFft_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FDC188DE7F100036549 /* track1.mp3 */,
+				D04E6FDD188DE7F100036549 /* track2.mp3 */,
+				4095F41738E845C0A471A34E /* CinderApp.icns */,
+				4A2140091DDE4F698F0021FA /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D04E6FB7188DE7D300036549 /* BeatFactory */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FB8188DE7D300036549 /* .gitignore */,
+				D04E6FB9188DE7D300036549 /* lib */,
+				D04E6FCD188DE7D400036549 /* LICENSE */,
+				D04E6FCE188DE7D400036549 /* README.md */,
+				D04E6FCF188DE7D400036549 /* src */,
+			);
+			name = BeatFactory;
+			path = ../blocks/BeatFactory;
+			sourceTree = "<group>";
+		};
+		D04E6FB9188DE7D300036549 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FBA188DE7D300036549 /* Cinder-KissFft */,
+				D04E6FC5188DE7D400036549 /* onsetds */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		D04E6FBA188DE7D300036549 /* Cinder-KissFft */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FBB188DE7D300036549 /* README */,
+				D04E6FBC188DE7D300036549 /* src */,
+			);
+			path = "Cinder-KissFft";
+			sourceTree = "<group>";
+		};
+		D04E6FBC188DE7D300036549 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FBD188DE7D300036549 /* kiss */,
+				D04E6FC3188DE7D300036549 /* KissFFT.cpp */,
+				D04E6FC4188DE7D300036549 /* KissFFT.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D04E6FBD188DE7D300036549 /* kiss */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FBE188DE7D300036549 /* _kiss_fft_guts.h */,
+				D04E6FBF188DE7D300036549 /* kiss_fft.c */,
+				D04E6FC0188DE7D300036549 /* kiss_fft.h */,
+				D04E6FC1188DE7D300036549 /* kiss_fftr.c */,
+				D04E6FC2188DE7D300036549 /* kiss_fftr.h */,
+			);
+			path = kiss;
+			sourceTree = "<group>";
+		};
+		D04E6FC5188DE7D400036549 /* onsetds */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FC6188DE7D400036549 /* lib */,
+				D04E6FC8188DE7D400036549 /* src */,
+			);
+			path = onsetds;
+			sourceTree = "<group>";
+		};
+		D04E6FC6188DE7D400036549 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FC7188DE7D400036549 /* fftw3.h */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		D04E6FC8188DE7D400036549 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FC9188DE7D400036549 /* onsetsds.c */,
+				D04E6FCA188DE7D400036549 /* onsetsds.h */,
+				D04E6FCB188DE7D400036549 /* onsetsdshelpers.c */,
+				D04E6FCC188DE7D400036549 /* onsetsdshelpers.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D04E6FCF188DE7D400036549 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D04E6FD0188DE7D400036549 /* BeatFactory.cpp */,
+				D04E6FD1188DE7D400036549 /* BeatFactory.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* CircleFft */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CircleFft" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CircleFft;
+			productInstallPath = "$(HOME)/Applications";
+			productName = CircleFft;
+			productReference = 8D1107320486CEB800E47090 /* CircleFft.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CircleFft" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CircleFft */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* CircleFft */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04E6FD3188DE7D400036549 /* README in Resources */,
+				D04E6FD2188DE7D400036549 /* .gitignore in Resources */,
+				D04E6FDE188DE7F100036549 /* track1.mp3 in Resources */,
+				D04E6FDA188DE7D400036549 /* README.md in Resources */,
+				D04E6FDF188DE7F100036549 /* track2.mp3 in Resources */,
+				D04E6FD9188DE7D400036549 /* LICENSE in Resources */,
+				D6FB0E76492E47D48D3E807B /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D04E6FDB188DE7D400036549 /* BeatFactory.cpp in Sources */,
+				D04E6FD4188DE7D400036549 /* kiss_fft.c in Sources */,
+				A8E96BE4284C40419AA8E4CF /* CircleFftApp.cpp in Sources */,
+				D04E6FD7188DE7D400036549 /* onsetsds.c in Sources */,
+				D04E6FD6188DE7D400036549 /* KissFFT.cpp in Sources */,
+				D04E6FD8188DE7D400036549 /* onsetsdshelpers.c in Sources */,
+				D04E6FD5188DE7D400036549 /* kiss_fftr.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CircleFft_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
+				PRODUCT_NAME = CircleFft;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CircleFft_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
+				PRODUCT_NAME = CircleFft;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = i386;
+				CINDER_PATH = ../../../../lib/cinder_0.8.5_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = i386;
+				CINDER_PATH = ../../../../lib/cinder_0.8.5_mac;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "CircleFft" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CircleFft" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

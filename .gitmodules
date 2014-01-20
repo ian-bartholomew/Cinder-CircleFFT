@@ -1,0 +1,3 @@
+[submodule "blocks/BeatFactory"]
+	path = blocks/BeatFactory
+	url = git@github.com:ian-bartholomew/Cinder-BeatFactory.git
