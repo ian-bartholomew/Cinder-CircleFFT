@@ -19,27 +19,31 @@ public:
 	void update();
 	void draw();
     void shutdown();
+    void resize();
+    
+    void toggleFullscreen();
     
     void mouseDown( MouseEvent event );
     void keyDown( KeyEvent event );
     
-    
-    void recalcMesh();
+    Shape2d getShapeFromPoints(vector<Vec2f> points);
     vector<Vec2f> getCirclePoints(float radius, Vec2f center);
     vector<Vec2f> getCirclePointsFromFFT(float radius, Vec2f center, float * fftData, int32_t fftDataSize);
     
     void initParams();
     
-	gl::VboMesh			mVboMesh;
-    float				mPrecision, mOldPrecision;
-    Shape2d				mShape, mShapeB;
-	params::InterfaceGl	mParams;
-	float				mZoom;
-	int32_t				mNumPoints;
-    bool				mDrawWireframe;
-    bool				mDrawParams;
+	gl::VboMesh             mVboMesh;
+	params::InterfaceGl     mParams;
+	float                   mZoom;
+    float                   mBaseCircleRadius;
+    float                   mCurrentCircleRaidus;
+    bool                    mDrawWireframe;
+    bool                    mDrawParams;
+    bool                    mFullScreen = false;
     
-    BeatFactoryRef      beatFactoryRef;
+    Shape2d                 mBaseCircle;
+    
+    BeatFactoryRef          beatFactoryRef;
     
 };
 
@@ -58,23 +62,26 @@ void CircleFftApp::setup()
     mZoom = 1.0f;
     mDrawWireframe = true;
     mDrawParams = true;
-	mOldPrecision = mPrecision = 1.0f;
-	mNumPoints = 0;
+    mBaseCircleRadius = 1.0f;
+    mCurrentCircleRaidus = 200.0f;
     
     beatFactoryRef = BeatFactory::create();
     beatFactoryRef->loadAudio(loadResource( RES_TRACK_2 ));
     beatFactoryRef->setup();
     
-    vector<Vec2f> points = getCirclePoints(200.0f, getWindowCenter());
-    mShape.moveTo( points[0]  );
-    for( int i = 1; i < points.size(); i++ )
-    {
-        mShape.quadTo( points[i-1], points[i] );
-    }
-    mShape.close();
+    // base circle
+    vector<Vec2f> points = getCirclePoints(mBaseCircleRadius, getWindowCenter());
+    mBaseCircle = getShapeFromPoints(points);
     
-	// load VBO
-	recalcMesh();
+    points = getCirclePoints(mCurrentCircleRaidus, getWindowCenter());
+    Shape2d shape = getShapeFromPoints(points);
+    
+    Triangulator triangulator;
+    
+    triangulator.addShape( getShapeFromPoints(points) );
+    triangulator.addShape(mBaseCircle);
+    
+    mVboMesh = gl::VboMesh( triangulator.calcMesh() );
     
     initParams();
 }
@@ -85,29 +92,25 @@ void CircleFftApp::update()
     
     // check to see if we have fft data, since that takes a sec
 	if ( beatFactoryRef->hasFFTData() ) {
-        vector<Vec2f> points = getCirclePointsFromFFT(200.0f, getWindowCenter(), beatFactoryRef->getFftData(), beatFactoryRef->getDataSize());
-        mShape.clear();
-        mShape.moveTo( points[0] );
-        for( int i = 1; i < points.size(); i++ )
-        {
-            mShape.quadTo( points[i-1], points[i] );
-        }
-        mShape.close();
+        Triangulator triangulator;
         
-        // load VBO
-        recalcMesh();
+        vector<Vec2f> points = getCirclePointsFromFFT(mCurrentCircleRaidus, getWindowCenter(), beatFactoryRef->getFftData(), beatFactoryRef->getDataSize());
+
+        triangulator.addShape( getShapeFromPoints(points) );
+        triangulator.addShape(mBaseCircle);
+        
+        mVboMesh = gl::VboMesh( triangulator.calcMesh() );
     }
     
 }
 
 void CircleFftApp::draw()
 {
-    if( mOldPrecision != mPrecision )
-		recalcMesh();
     
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
     
+	gl::pushModelView();
     
     if( mDrawWireframe ) {
         gl::enableWireframe();
@@ -115,8 +118,11 @@ void CircleFftApp::draw()
         gl::draw( mVboMesh );
         gl::disableWireframe();
     } else {
+        gl::scale( Vec2f( mZoom, mZoom ) );
         gl::draw( mVboMesh );
     }
+    
+	gl::popModelView();
     if (mDrawParams)
         mParams.draw();
 }
@@ -124,6 +130,14 @@ void CircleFftApp::draw()
 void CircleFftApp::shutdown()
 {
 
+}
+
+void CircleFftApp::resize()
+{
+    // base circle
+    vector<Vec2f> points = getCirclePoints(mBaseCircleRadius, getWindowCenter());
+    mBaseCircle = getShapeFromPoints(points);
+    
 }
 
 #pragma mark - ------------------
@@ -139,9 +153,9 @@ void CircleFftApp::keyDown(KeyEvent event){
         case KeyEvent::KEY_ESCAPE:
             quit();
             break;
-//        case KeyEvent::KEY_f:
-//            toggleFullscreen();
-//            break;
+        case KeyEvent::KEY_f:
+            toggleFullscreen();
+            break;
         case KeyEvent::KEY_SPACE:
             mDrawParams = !mDrawParams;
             break;
@@ -153,17 +167,22 @@ void CircleFftApp::keyDown(KeyEvent event){
 #pragma mark Helpers
 #pragma mark -
 
-void CircleFftApp::recalcMesh()
+Shape2d CircleFftApp::getShapeFromPoints(vector<Vec2f> points)
 {
-	TriMesh2d mesh = Triangulator( mShape, mPrecision ).calcMesh( Triangulator::WINDING_ODD );
-	mNumPoints = mesh.getNumIndices();
-	mVboMesh = gl::VboMesh( mesh );
-	mOldPrecision = mPrecision;
+    Shape2d shape;
+    shape.moveTo( points[0] );
+    for( int i = 1; i < points.size(); i++ )
+    {
+        shape.quadTo( points[i-1], points[i] );
+    }
+    shape.close();
+    
+    return shape;
 }
 
 vector<Vec2f> CircleFftApp::getCirclePoints(float radius, Vec2f center)
 {
-    uint16_t numPoints = 360;
+    uint16_t numPoints = 2;
 	float phi = (M_PI * 2.0f) / numPoints;
     vector<Vec2f> points;
     
@@ -185,10 +204,10 @@ vector<Vec2f> CircleFftApp::getCirclePointsFromFFT(float radius, Vec2f center, f
 	float phi = (M_PI * 2.0f) / fftDataSize;
     vector<Vec2f> points;
     
-    for (uint16_t i = 0; i<fftDataSize; i = i+12)
+    for (uint16_t i = 0; i<fftDataSize; i = i+36)
     {
         float angle = phi * i;
-        float r = (radius + (fftData[i] * 100) );
+        float r = (radius + lmap(fftData[i], 0.0f, 0.8f, 0.0f, 500.0f));
         float x = center.x + r * cos(angle);
         float y = center.y + r * sin(angle);
         
@@ -198,6 +217,12 @@ vector<Vec2f> CircleFftApp::getCirclePointsFromFFT(float radius, Vec2f center, f
     return points;
 }
 
+void CircleFftApp::toggleFullscreen(){
+    mFullScreen = !mFullScreen;
+    setFullScreen( mFullScreen );
+    
+    resize();
+}
 
 #pragma mark - ------------------
 #pragma mark inits
@@ -208,8 +233,6 @@ void CircleFftApp::initParams()
     mParams = params::InterfaceGl( "Parameters", Vec2i( 220, 170 ) );
 	mParams.addParam( "Zoom", &mZoom, "min=0.01 max=20 keyIncr=z keyDecr=Z" );
 	mParams.addParam( "Draw Wireframe", &mDrawWireframe, "min=1 max=2000 keyIncr== keyDecr=-" );
-	mParams.addParam( "Precision", &mPrecision, "min=0.01 max=20 keyIncr=p keyDecr=P" );
-	mParams.addParam( "Num Points", &mNumPoints, "", true );
 }
 
 CINDER_APP_NATIVE( CircleFftApp, RendererGl )
