@@ -5,6 +5,9 @@
 #include "cinder/Triangulate.h"
 #include "cinder/params/Params.h"
 
+#include "BeatFactory.h"
+#include "Resources.h"
+
 using namespace ci;
 using namespace ci::app;
 using namespace std;
@@ -20,19 +23,23 @@ public:
     void mouseDown( MouseEvent event );
     void keyDown( KeyEvent event );
     
+    
     void recalcMesh();
     vector<Vec2f> getCirclePoints(float radius, Vec2f center);
+    vector<Vec2f> getCirclePointsFromFFT(float radius, Vec2f center, float * fftData, int32_t fftDataSize);
     
     void initParams();
     
 	gl::VboMesh			mVboMesh;
     float				mPrecision, mOldPrecision;
-    Shape2d				mShape;
+    Shape2d				mShape, mShapeB;
 	params::InterfaceGl	mParams;
 	float				mZoom;
 	int32_t				mNumPoints;
     bool				mDrawWireframe;
     bool				mDrawParams;
+    
+    BeatFactoryRef      beatFactoryRef;
     
 };
 
@@ -54,6 +61,10 @@ void CircleFftApp::setup()
 	mOldPrecision = mPrecision = 1.0f;
 	mNumPoints = 0;
     
+    beatFactoryRef = BeatFactory::create();
+    beatFactoryRef->loadAudio(loadResource( RES_TRACK_2 ));
+    beatFactoryRef->setup();
+    
     vector<Vec2f> points = getCirclePoints(200.0f, getWindowCenter());
     mShape.moveTo( points[0]  );
     for( int i = 1; i < points.size(); i++ )
@@ -70,8 +81,23 @@ void CircleFftApp::setup()
 
 void CircleFftApp::update()
 {
-    if( mOldPrecision != mPrecision )
-		recalcMesh();
+    beatFactoryRef->update();
+    
+    // check to see if we have fft data, since that takes a sec
+	if ( beatFactoryRef->hasFFTData() ) {
+        vector<Vec2f> points = getCirclePointsFromFFT(200.0f, getWindowCenter(), beatFactoryRef->getFftData(), beatFactoryRef->getDataSize());
+        mShape.clear();
+        mShape.moveTo( points[0] );
+        for( int i = 1; i < points.size(); i++ )
+        {
+            mShape.quadTo( points[i-1], points[i] );
+        }
+        mShape.close();
+        
+        // load VBO
+        recalcMesh();
+    }
+    
 }
 
 void CircleFftApp::draw()
@@ -137,7 +163,7 @@ void CircleFftApp::recalcMesh()
 
 vector<Vec2f> CircleFftApp::getCirclePoints(float radius, Vec2f center)
 {
-    uint16_t numPoints = 1024;
+    uint16_t numPoints = 360;
 	float phi = (M_PI * 2.0f) / numPoints;
     vector<Vec2f> points;
     
@@ -153,6 +179,25 @@ vector<Vec2f> CircleFftApp::getCirclePoints(float radius, Vec2f center)
     return points;
     
 }
+
+vector<Vec2f> CircleFftApp::getCirclePointsFromFFT(float radius, Vec2f center, float *fftData, int32_t fftDataSize)
+{
+	float phi = (M_PI * 2.0f) / fftDataSize;
+    vector<Vec2f> points;
+    
+    for (uint16_t i = 0; i<fftDataSize; i = i+12)
+    {
+        float angle = phi * i;
+        float r = (radius + (fftData[i] * 100) );
+        float x = center.x + r * cos(angle);
+        float y = center.y + r * sin(angle);
+        
+        points.push_back(Vec2f(x,y));
+    }
+    
+    return points;
+}
+
 
 #pragma mark - ------------------
 #pragma mark inits
